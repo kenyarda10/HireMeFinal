@@ -1,0 +1,19 @@
+﻿@model HireMeFinal.Models.PostingViewModel
+@{
+    ViewBag.Title = "Postings";
+}
+
+<h2>Posting</h2>
+
+<link href="~/Content/bootstrap.css" rel="stylesheet" />
+<div class="container" style="width: 60%; margin-top: 2%">
+    @if (Model != null)
+    {
+        <ul class="list-group">
+            <li class="list-group-item active">Posting Information</li>
+            <li class="list-group-item">Posting Title: <b>@Model.jobTitle</b></li>
+            <li class="list-group-item">Posting Description: <b>@Model.jobDescription</b></li>
+            <li class="list-group-item">Company Id: <b>@Model.companyID</b></li>
+        </ul>
+    }
+</div>

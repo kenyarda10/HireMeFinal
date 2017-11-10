@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="MireMeModelStoreContainer" CdmEntityContainer="MireMeEntities">
+    <EntitySetMapping Name="jobPostings">
+      <EntityTypeMapping TypeName="MireMeModel.jobPosting">
+        <MappingFragment StoreEntitySet="jobPosting">
+          <ScalarProperty Name="jobPostingID" ColumnName="jobPostingID" />
+          <ScalarProperty Name="jobTypeID" ColumnName="jobTypeID" />
+          <ScalarProperty Name="companyID" ColumnName="companyID" />
+          <ScalarProperty Name="jobLocationID" ColumnName="jobLocationID" />
+          <ScalarProperty Name="userAccountID" ColumnName="userAccountID" />
+          <ScalarProperty Name="jobCategoryID" ColumnName="jobCategoryID" />
+          <ScalarProperty Name="applicantTypeID" ColumnName="applicantTypeID" />
+          <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+          <ScalarProperty Name="jobDescription" ColumnName="jobDescription" />
+          <ScalarProperty Name="jobTitle" ColumnName="jobTitle" />
+          <ScalarProperty Name="numOpenings" ColumnName="numOpenings" />
+          <ScalarProperty Name="hoursPerWeek" ColumnName="hoursPerWeek" />
+          <ScalarProperty Name="wageSalary" ColumnName="wageSalary" />
+          <ScalarProperty Name="startDate" ColumnName="startDate" />
+          <ScalarProperty Name="endDate" ColumnName="endDate" />
+          <ScalarProperty Name="qualifications" ColumnName="qualifications" />
+          <ScalarProperty Name="applicationInstructions" ColumnName="applicationInstructions" />
+          <ScalarProperty Name="applicationWebsite" ColumnName="applicationWebsite" />
+          <ScalarProperty Name="postingDate" ColumnName="postingDate" />
+          <ScalarProperty Name="expirationDate" ColumnName="expirationDate" />
+          <ScalarProperty Name="enabled" ColumnName="enabled" />
+          <ScalarProperty Name="numViews" ColumnName="numViews" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

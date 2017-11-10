@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MireMeModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="jobPosting">
+    <Key>
+      <PropertyRef Name="jobPostingID" />
+    </Key>
+    <Property Name="jobPostingID" Type="Int32" Nullable="false" />
+    <Property Name="jobTypeID" Type="Int32" Nullable="false" />
+    <Property Name="companyID" Type="Int32" Nullable="false" />
+    <Property Name="jobLocationID" Type="Int32" Nullable="false" />
+    <Property Name="userAccountID" Type="Int32" Nullable="false" />
+    <Property Name="jobCategoryID" Type="Int32" Nullable="false" />
+    <Property Name="applicantTypeID" Type="Int32" Nullable="false" />
+    <Property Name="createdDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="jobDescription" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="jobTitle" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="numOpenings" Type="Int32" Nullable="false" />
+    <Property Name="hoursPerWeek" Type="Int32" Nullable="false" />
+    <Property Name="wageSalary" Type="Decimal" Precision="8" Scale="2" Nullable="false" />
+    <Property Name="startDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="endDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="qualifications" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="applicationInstructions" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="applicationWebsite" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="postingDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="expirationDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="enabled" Type="Boolean" Nullable="false" />
+    <Property Name="numViews" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="MireMeEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="jobPostings" EntityType="Self.jobPosting" />
+  </EntityContainer>
+</Schema>
