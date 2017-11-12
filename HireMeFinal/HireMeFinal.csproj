@@ -202,9 +202,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-<<<<<<< HEAD
     <Compile Include="Infrastructure\NinjectDependencyResolver.cs" />
-=======
     <Compile Include="Migrations\201711100408073_InitialCreate.cs" />
     <Compile Include="Migrations\201711100408073_InitialCreate.Designer.cs">
       <DependentUpon>201711100408073_InitialCreate.cs</DependentUpon>
@@ -214,7 +212,6 @@
       <DependentUpon>201711120525491_UserProfileUpdates.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
->>>>>>> da7e8aa7edbf5dd9a0ef97e2ddbe4dfc3bb41d3e
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\businessIndustry.cs">
       <DependentUpon>HireMeDataModel.tt</DependentUpon>
