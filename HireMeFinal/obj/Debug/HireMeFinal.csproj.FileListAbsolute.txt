@@ -149,6 +149,12 @@ C:\Users\Keith\Documents\GitHub\HireMeFinal\HireMeFinal\bin\Microsoft.Owin.Secur
 C:\Users\Keith\Documents\GitHub\HireMeFinal\HireMeFinal\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 C:\Users\Keith\Documents\GitHub\HireMeFinal\HireMeFinal\obj\Debug\HireMeFinal.dll
 C:\Users\Keith\Documents\GitHub\HireMeFinal\HireMeFinal\obj\Debug\HireMeFinal.pdb
+<<<<<<< HEAD
 C:\Users\Keith\Documents\GitHub\HireMeFinal\HireMeFinal\bin\Moq.dll
 C:\Users\Keith\Documents\GitHub\HireMeFinal\HireMeFinal\bin\Moq.xml
 C:\Users\Keith\Documents\GitHub\HireMeFinal\HireMeFinal\obj\Debug\HireMeFinal.csprojResolveAssemblyReference.cache
+=======
+C:\Users\Kenyarda\Documents\Visual Studio 2015\Projects\HireMeFinal\HireMeFinal\obj\Debug\HireMeFinal.Migrations.InitialCreate.resources
+C:\Users\Kenyarda\Documents\Visual Studio 2015\Projects\HireMeFinal\HireMeFinal\obj\Debug\HireMeFinal.csproj.GenerateResource.Cache
+C:\Users\Kenyarda\Documents\Visual Studio 2015\Projects\HireMeFinal\HireMeFinal\obj\Debug\HireMeFinal.Migrations.UserProfileUpdates.resources
+>>>>>>> da7e8aa7edbf5dd9a0ef97e2ddbe4dfc3bb41d3e
