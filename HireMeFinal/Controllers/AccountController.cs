@@ -151,20 +151,7 @@ namespace HireMeFinal.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser {
-                    UserName = model.Email,
-                    Email = model.Email,
-                    firstName = model.firstName,
-                    lastName = model.lastName,
-                    Address1 = model.Address1,
-                    Address2 = model.Address2,
-                    City = model.City,
-                    State = model.State,
-                    zipCode = model.zipCode,
-                    PhoneNumber = model.PhoneNumber,
-                    cellPhone = model.cellPhone,
-                    Major = model.Major
-                };
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
