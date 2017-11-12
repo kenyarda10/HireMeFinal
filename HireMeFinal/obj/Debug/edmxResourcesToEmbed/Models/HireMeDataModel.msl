@@ -1,0 +1,234 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="HireMeModelStoreContainer" CdmEntityContainer="HireMeEntities">
+    <EntitySetMapping Name="businessIndustries">
+      <EntityTypeMapping TypeName="HireMeModel.businessIndustry">
+        <MappingFragment StoreEntitySet="businessIndustry">
+          <ScalarProperty Name="businessIndustryID" ColumnName="businessIndustryID" />
+          <ScalarProperty Name="businessIndustryName" ColumnName="businessIndustryName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="companies">
+      <EntityTypeMapping TypeName="HireMeModel.company">
+        <MappingFragment StoreEntitySet="company">
+          <ScalarProperty Name="companyID" ColumnName="companyID" />
+          <ScalarProperty Name="companyName" ColumnName="companyName" />
+          <ScalarProperty Name="companyDescription" ColumnName="companyDescription" />
+          <ScalarProperty Name="establishmentDate" ColumnName="establishmentDate" />
+          <ScalarProperty Name="companyWebsite" ColumnName="companyWebsite" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="companyIndustries">
+      <EntityTypeMapping TypeName="HireMeModel.companyIndustry">
+        <MappingFragment StoreEntitySet="companyIndustry">
+          <ScalarProperty Name="companyIndustryID" ColumnName="companyIndustryID" />
+          <ScalarProperty Name="companyID" ColumnName="companyID" />
+          <ScalarProperty Name="businessIndustryID" ColumnName="businessIndustryID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="companyLogoes">
+      <EntityTypeMapping TypeName="HireMeModel.companyLogo">
+        <MappingFragment StoreEntitySet="companyLogo">
+          <ScalarProperty Name="companyLogoID" ColumnName="companyLogoID" />
+          <ScalarProperty Name="companyID" ColumnName="companyID" />
+          <ScalarProperty Name="companyImage" ColumnName="companyImage" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="educationDetails">
+      <EntityTypeMapping TypeName="HireMeModel.educationDetail">
+        <MappingFragment StoreEntitySet="educationDetail">
+          <ScalarProperty Name="userAccountID" ColumnName="userAccountID" />
+          <ScalarProperty Name="certificateDegree" ColumnName="certificateDegree" />
+          <ScalarProperty Name="major" ColumnName="major" />
+          <ScalarProperty Name="institutionName" ColumnName="institutionName" />
+          <ScalarProperty Name="startDate" ColumnName="startDate" />
+          <ScalarProperty Name="completionDate" ColumnName="completionDate" />
+          <ScalarProperty Name="percentage" ColumnName="percentage" />
+          <ScalarProperty Name="gpa" ColumnName="gpa" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="jobApplicationStatus">
+      <EntityTypeMapping TypeName="HireMeModel.jobApplicationStatu">
+        <MappingFragment StoreEntitySet="jobApplicationStatus">
+          <ScalarProperty Name="jobApplicationStatusID" ColumnName="jobApplicationStatusID" />
+          <ScalarProperty Name="statusDesc" ColumnName="statusDesc" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="jobLocations">
+      <EntityTypeMapping TypeName="HireMeModel.jobLocation">
+        <MappingFragment StoreEntitySet="jobLocation">
+          <ScalarProperty Name="jobLocationID" ColumnName="jobLocationID" />
+          <ScalarProperty Name="address1" ColumnName="address1" />
+          <ScalarProperty Name="address2" ColumnName="address2" />
+          <ScalarProperty Name="city" ColumnName="city" />
+          <ScalarProperty Name="state" ColumnName="state" />
+          <ScalarProperty Name="country" ColumnName="country" />
+          <ScalarProperty Name="zip" ColumnName="zip" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="jobPostActions">
+      <EntityTypeMapping TypeName="HireMeModel.jobPostAction">
+        <MappingFragment StoreEntitySet="jobPostAction">
+          <ScalarProperty Name="jobPostActionID" ColumnName="jobPostActionID" />
+          <ScalarProperty Name="actionName" ColumnName="actionName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="jobPostActivities">
+      <EntityTypeMapping TypeName="HireMeModel.jobPostActivity">
+        <MappingFragment StoreEntitySet="jobPostActivity">
+          <ScalarProperty Name="jobPostActivityID" ColumnName="jobPostActivityID" />
+          <ScalarProperty Name="userAccountID" ColumnName="userAccountID" />
+          <ScalarProperty Name="jobPostingID" ColumnName="jobPostingID" />
+          <ScalarProperty Name="applyDate" ColumnName="applyDate" />
+          <ScalarProperty Name="jobApplicationStatusID" ColumnName="jobApplicationStatusID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="jobPostActivityLogs">
+      <EntityTypeMapping TypeName="HireMeModel.jobPostActivityLog">
+        <MappingFragment StoreEntitySet="jobPostActivityLog">
+          <ScalarProperty Name="jobPostActivityLogID" ColumnName="jobPostActivityLogID" />
+          <ScalarProperty Name="jobPostActivityID" ColumnName="jobPostActivityID" />
+          <ScalarProperty Name="jobPostActionID" ColumnName="jobPostActionID" />
+          <ScalarProperty Name="actionDate" ColumnName="actionDate" />
+          <ScalarProperty Name="userAccountID" ColumnName="userAccountID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="jobPostings">
+      <EntityTypeMapping TypeName="HireMeModel.jobPosting">
+        <MappingFragment StoreEntitySet="jobPosting">
+          <ScalarProperty Name="jobPostingID" ColumnName="jobPostingID" />
+          <ScalarProperty Name="jobTypeID" ColumnName="jobTypeID" />
+          <ScalarProperty Name="companyID" ColumnName="companyID" />
+          <ScalarProperty Name="jobLocationID" ColumnName="jobLocationID" />
+          <ScalarProperty Name="userAccountID" ColumnName="userAccountID" />
+          <ScalarProperty Name="jobCategoryID" ColumnName="jobCategoryID" />
+          <ScalarProperty Name="applicantTypeID" ColumnName="applicantTypeID" />
+          <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+          <ScalarProperty Name="jobDescription" ColumnName="jobDescription" />
+          <ScalarProperty Name="jobTitle" ColumnName="jobTitle" />
+          <ScalarProperty Name="numOpenings" ColumnName="numOpenings" />
+          <ScalarProperty Name="hoursPerWeek" ColumnName="hoursPerWeek" />
+          <ScalarProperty Name="wageSalary" ColumnName="wageSalary" />
+          <ScalarProperty Name="startDate" ColumnName="startDate" />
+          <ScalarProperty Name="endDate" ColumnName="endDate" />
+          <ScalarProperty Name="qualifications" ColumnName="qualifications" />
+          <ScalarProperty Name="applicationInstructions" ColumnName="applicationInstructions" />
+          <ScalarProperty Name="applicationWebsite" ColumnName="applicationWebsite" />
+          <ScalarProperty Name="postingDate" ColumnName="postingDate" />
+          <ScalarProperty Name="expirationDate" ColumnName="expirationDate" />
+          <ScalarProperty Name="enabled" ColumnName="enabled" />
+          <ScalarProperty Name="numViews" ColumnName="numViews" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="jobPostSkillSets">
+      <EntityTypeMapping TypeName="HireMeModel.jobPostSkillSet">
+        <MappingFragment StoreEntitySet="jobPostSkillSet">
+          <ScalarProperty Name="skillSetID" ColumnName="skillSetID" />
+          <ScalarProperty Name="jobPostingID" ColumnName="jobPostingID" />
+          <ScalarProperty Name="skillLevel" ColumnName="skillLevel" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="jobTypes">
+      <EntityTypeMapping TypeName="HireMeModel.jobType">
+        <MappingFragment StoreEntitySet="jobType">
+          <ScalarProperty Name="jobTypeID" ColumnName="jobTypeID" />
+          <ScalarProperty Name="jobTypeName" ColumnName="jobTypeName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="skillSets">
+      <EntityTypeMapping TypeName="HireMeModel.skillSet">
+        <MappingFragment StoreEntitySet="skillSet">
+          <ScalarProperty Name="skillSetID" ColumnName="skillSetID" />
+          <ScalarProperty Name="skillSetName" ColumnName="skillSetName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="studentExperiences">
+      <EntityTypeMapping TypeName="HireMeModel.studentExperience">
+        <MappingFragment StoreEntitySet="studentExperience">
+          <ScalarProperty Name="userAccountID" ColumnName="userAccountID" />
+          <ScalarProperty Name="currentJob" ColumnName="currentJob" />
+          <ScalarProperty Name="startDate" ColumnName="startDate" />
+          <ScalarProperty Name="endDate" ColumnName="endDate" />
+          <ScalarProperty Name="jobTitle" ColumnName="jobTitle" />
+          <ScalarProperty Name="companyName" ColumnName="companyName" />
+          <ScalarProperty Name="jobCity" ColumnName="jobCity" />
+          <ScalarProperty Name="jobState" ColumnName="jobState" />
+          <ScalarProperty Name="jobCountry" ColumnName="jobCountry" />
+          <ScalarProperty Name="description" ColumnName="description" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="studentProfiles">
+      <EntityTypeMapping TypeName="HireMeModel.studentProfile">
+        <MappingFragment StoreEntitySet="studentProfile">
+          <ScalarProperty Name="userAccountID" ColumnName="userAccountID" />
+          <ScalarProperty Name="firstName" ColumnName="firstName" />
+          <ScalarProperty Name="lastName" ColumnName="lastName" />
+          <ScalarProperty Name="address1" ColumnName="address1" />
+          <ScalarProperty Name="address2" ColumnName="address2" />
+          <ScalarProperty Name="city" ColumnName="city" />
+          <ScalarProperty Name="state" ColumnName="state" />
+          <ScalarProperty Name="zip" ColumnName="zip" />
+          <ScalarProperty Name="phone1" ColumnName="phone1" />
+          <ScalarProperty Name="phone2" ColumnName="phone2" />
+          <ScalarProperty Name="cellPhone" ColumnName="cellPhone" />
+          <ScalarProperty Name="cellProvider" ColumnName="cellProvider" />
+          <ScalarProperty Name="website" ColumnName="website" />
+          <ScalarProperty Name="employerViewing" ColumnName="employerViewing" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="studentSkillSets">
+      <EntityTypeMapping TypeName="HireMeModel.studentSkillSet">
+        <MappingFragment StoreEntitySet="studentSkillSet">
+          <ScalarProperty Name="userAccountID" ColumnName="userAccountID" />
+          <ScalarProperty Name="skillSetID" ColumnName="skillSetID" />
+          <ScalarProperty Name="skillLevel" ColumnName="skillLevel" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="userAccounts">
+      <EntityTypeMapping TypeName="HireMeModel.userAccount">
+        <MappingFragment StoreEntitySet="userAccount">
+          <ScalarProperty Name="userAccountID" ColumnName="userAccountID" />
+          <ScalarProperty Name="userTypeID" ColumnName="userTypeID" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="password" ColumnName="password" />
+          <ScalarProperty Name="enabled" ColumnName="enabled" />
+          <ScalarProperty Name="registrationDate" ColumnName="registrationDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="userLogs">
+      <EntityTypeMapping TypeName="HireMeModel.userLog">
+        <MappingFragment StoreEntitySet="userLog">
+          <ScalarProperty Name="userAccountID" ColumnName="userAccountID" />
+          <ScalarProperty Name="lastLoginDate" ColumnName="lastLoginDate" />
+          <ScalarProperty Name="lastApplyDate" ColumnName="lastApplyDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="userTypes">
+      <EntityTypeMapping TypeName="HireMeModel.userType">
+        <MappingFragment StoreEntitySet="userType">
+          <ScalarProperty Name="userTypeID" ColumnName="userTypeID" />
+          <ScalarProperty Name="userTypeName" ColumnName="userTypeName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,19 +1,33 @@
-﻿@model HireMeFinal.Models.PostingViewModel
+﻿@model IEnumerable<HireMeFinal.Entities.Postings>
 @{
     ViewBag.Title = "Postings";
 }
 
-<h2>Posting</h2>
-
 <link href="~/Content/bootstrap.css" rel="stylesheet" />
-<div class="container" style="width: 60%; margin-top: 2%">
-    @if (Model != null)
-    {
-        <ul class="list-group">
-            <li class="list-group-item active">Posting Information</li>
-            <li class="list-group-item">Posting Title: <b>@Model.jobTitle</b></li>
-            <li class="list-group-item">Posting Description: <b>@Model.jobDescription</b></li>
-            <li class="list-group-item">Company Id: <b>@Model.companyID</b></li>
-        </ul>
-    }
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3>Current Postings:</h3>
+    </div>
+    <div class="panel-body">
+        <table class="table table-striped table-condensed table-bordered">
+            <tr>
+                <th class="text-left">Title</th>
+                <th class="text-left">Description</th>
+                <th class="text-left">Company</th>
+                <th class="text-center">Actions</th>
+            </tr>
+            @if (Model != null)
+            {
+                foreach (var p in Model)
+                {
+                    <tr>
+                        <td class="text-left">@p.jobTitle</td>
+                        <td class="text-left">@p.jobDescription</td>
+                        <td class="text-left">@p.companyName</td>
+                        <td class="text-center"></td>
+                    </tr>
+                }
+            }
+        </table>
+    </div>
 </div>

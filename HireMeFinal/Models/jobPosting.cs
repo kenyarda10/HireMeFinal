@@ -14,6 +14,13 @@ namespace HireMeFinal.Models
     
     public partial class jobPosting
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public jobPosting()
+        {
+            this.jobPostActivities = new HashSet<jobPostActivity>();
+            this.jobPostSkillSets = new HashSet<jobPostSkillSet>();
+        }
+    
         public int jobPostingID { get; set; }
         public int jobTypeID { get; set; }
         public int companyID { get; set; }
@@ -36,5 +43,14 @@ namespace HireMeFinal.Models
         public System.DateTime expirationDate { get; set; }
         public bool enabled { get; set; }
         public int numViews { get; set; }
+    
+        public virtual company company { get; set; }
+        public virtual jobLocation jobLocation { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<jobPostActivity> jobPostActivities { get; set; }
+        public virtual jobType jobType { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<jobPostSkillSet> jobPostSkillSets { get; set; }
+        public virtual userAccount userAccount { get; set; }
     }
 }

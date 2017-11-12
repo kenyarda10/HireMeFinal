@@ -49,6 +49,10 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Moq, Version=4.1.1309.1617, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
+      <HintPath>..\packages\Moq.4.1.1309.1617\lib\net40\Moq.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Ninject, Version=3.2.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
       <HintPath>..\packages\Ninject.3.2.0.0\lib\net45-full\Ninject.dll</HintPath>
       <Private>True</Private>
@@ -180,41 +184,113 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Abstract\IPostingRepository.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Concrete\EFDbContext.cs" />
+    <Compile Include="Concrete\EFPostingRepository.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PostingController.cs" />
+    <Compile Include="Entities\Postings.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Infrastructure\NinjectDependencyResolver.cs" />
+    <Compile Include="Migrations\201711100408073_InitialCreate.cs" />
+    <Compile Include="Migrations\201711100408073_InitialCreate.Designer.cs">
+      <DependentUpon>201711100408073_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201711120525491_UserProfileUpdates.cs" />
+    <Compile Include="Migrations\201711120525491_UserProfileUpdates.Designer.cs">
+      <DependentUpon>201711120525491_UserProfileUpdates.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\businessIndustry.cs">
+      <DependentUpon>HireMeDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\company.cs">
+      <DependentUpon>HireMeDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\companyIndustry.cs">
+      <DependentUpon>HireMeDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\companyLogo.cs">
+      <DependentUpon>HireMeDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\educationDetail.cs">
+      <DependentUpon>HireMeDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\HireMeDataModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HireMeDataModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\HireMeDataModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HireMeDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\HireMeDataModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HireMeDataModel.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\jobApplicationStatu.cs">
+      <DependentUpon>HireMeDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\jobLocation.cs">
+      <DependentUpon>HireMeDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\jobPostAction.cs">
+      <DependentUpon>HireMeDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\jobPostActivity.cs">
+      <DependentUpon>HireMeDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\jobPostActivityLog.cs">
+      <DependentUpon>HireMeDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\jobPosting.cs">
-      <DependentUpon>PostingModel.tt</DependentUpon>
+      <DependentUpon>HireMeDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\jobPostSkillSet.cs">
+      <DependentUpon>HireMeDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\jobType.cs">
+      <DependentUpon>HireMeDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\PostingModel.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>PostingModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\PostingModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>PostingModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\PostingModel.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>PostingModel.edmx</DependentUpon>
-    </Compile>
     <Compile Include="Models\PostingViewModel.cs" />
+    <Compile Include="Models\skillSet.cs">
+      <DependentUpon>HireMeDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\studentExperience.cs">
+      <DependentUpon>HireMeDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\studentProfile.cs">
+      <DependentUpon>HireMeDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\studentSkillSet.cs">
+      <DependentUpon>HireMeDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\userAccount.cs">
+      <DependentUpon>HireMeDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\userLog.cs">
+      <DependentUpon>HireMeDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\userType.cs">
+      <DependentUpon>HireMeDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -223,31 +299,33 @@
     <Content Include="App_Data\MireMe_log.ldf">
       <DependentUpon>MireMe.mdf</DependentUpon>
     </Content>
+    <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\ErrorStyles.css" />
     <Content Include="Content\SiteOld.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Models\PostingModel.Context.tt">
+    <Content Include="Models\HireMeDataModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>PostingModel.edmx</DependentUpon>
-      <LastGenOutput>PostingModel.Context.cs</LastGenOutput>
+      <DependentUpon>HireMeDataModel.edmx</DependentUpon>
+      <LastGenOutput>HireMeDataModel.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\PostingModel.tt">
+    <Content Include="Models\HireMeDataModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>PostingModel.edmx</DependentUpon>
-      <LastGenOutput>PostingModel.cs</LastGenOutput>
+      <DependentUpon>HireMeDataModel.edmx</DependentUpon>
+      <LastGenOutput>HireMeDataModel.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <EntityDeploy Include="Models\PostingModel.edmx">
+    <EntityDeploy Include="Models\HireMeDataModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>PostingModel.Designer.cs</LastGenOutput>
+      <LastGenOutput>HireMeDataModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\PostingModel.edmx.diagram">
-      <DependentUpon>PostingModel.edmx</DependentUpon>
+    <Content Include="Models\HireMeDataModel.edmx.diagram">
+      <DependentUpon>HireMeDataModel.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -261,7 +339,9 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -296,6 +376,9 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Posting\Posting.cshtml" />
+    <Content Include="Views\Shared\_AdminLayout.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
+    <Content Include="Views\Admin\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
@@ -308,7 +391,14 @@
     <None Include="Project_Readme.html" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201711100408073_InitialCreate.resx">
+      <DependentUpon>201711100408073_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201711120525491_UserProfileUpdates.resx">
+      <DependentUpon>201711120525491_UserProfileUpdates.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

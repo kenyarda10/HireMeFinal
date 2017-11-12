@@ -1,4 +1,5 @@
-﻿using HireMeFinal.Models;
+﻿using HireMeFinal.Entities;
+using HireMeFinal.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,16 +12,21 @@ namespace HireMeFinal.Controllers
     {
         public ActionResult Posting()
         {
-            MireMeEntities db = new MireMeEntities();
-            jobPosting posting = db.jobPostings.SingleOrDefault(x => x.companyID == 3);
+            HireMeEntities db = new HireMeEntities();
+            List<jobPosting> postingList = db.jobPostings.ToList();
 
-            PostingViewModel postingVM = new PostingViewModel();
+            Postings postingVM = new Postings();
 
-            postingVM.jobDescription = posting.jobDescription;
-            postingVM.jobTitle = posting.jobTitle;
-            postingVM.companyID = posting.companyID;
+            List<Postings> postingVMList = postingList.Select(x=> new Postings
+            {
+                jobPostingID = x.jobPostingID,
+                companyName = x.company.companyName,
+                jobTitle = x.jobTitle,
+                jobDescription = x.jobDescription
+            }).ToList();
 
-            return View(postingVM);
+
+            return View(postingVMList);
         }
         
     }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
@@ -7,7 +8,14 @@ namespace HireMeFinal.Models
 {
     public class PostingViewModel
     {
+        [Key]
         public int jobPostingID { get; set; }
+        public string jobDescription { get; set; }
+        public string jobTitle { get; set; }
+        public string companyName { get; set; }
+    }/*
+
+    public int jobPostingID { get; set; }
         public int jobTypeID { get; set; }
         public int companyID { get; set; }
         public int jobLocationID { get; set; }
@@ -29,5 +37,7 @@ namespace HireMeFinal.Models
         public System.DateTime expirationDate { get; set; }
         public bool enabled { get; set; }
         public int numViews { get; set; }
-    }
+
+        public String companyName { get; set; }
+    }*/
 }

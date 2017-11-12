@@ -1,0 +1,618 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="HireMeModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="businessIndustry">
+    <Key>
+      <PropertyRef Name="businessIndustryID" />
+    </Key>
+    <Property Name="businessIndustryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="businessIndustryName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="companyIndustries" Relationship="Self.businessIndustryID" FromRole="businessIndustry" ToRole="companyIndustry" />
+  </EntityType>
+  <EntityType Name="company">
+    <Key>
+      <PropertyRef Name="companyID" />
+    </Key>
+    <Property Name="companyID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="companyName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="companyDescription" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="establishmentDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="companyWebsite" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="companyLogoes" Relationship="Self.company_image_company" FromRole="company" ToRole="companyLogo" />
+    <NavigationProperty Name="companyIndustries" Relationship="Self.companyID" FromRole="company" ToRole="companyIndustry" />
+    <NavigationProperty Name="jobPostings" Relationship="Self.job_post_company" FromRole="company" ToRole="jobPosting" />
+  </EntityType>
+  <EntityType Name="companyIndustry">
+    <Key>
+      <PropertyRef Name="companyIndustryID" />
+    </Key>
+    <Property Name="companyIndustryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="companyID" Type="Int32" Nullable="false" />
+    <Property Name="businessIndustryID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="businessIndustry" Relationship="Self.businessIndustryID" FromRole="companyIndustry" ToRole="businessIndustry" />
+    <NavigationProperty Name="company" Relationship="Self.companyID" FromRole="companyIndustry" ToRole="company" />
+  </EntityType>
+  <EntityType Name="companyLogo">
+    <Key>
+      <PropertyRef Name="companyLogoID" />
+    </Key>
+    <Property Name="companyLogoID" Type="Int32" Nullable="false" />
+    <Property Name="companyID" Type="Int32" Nullable="false" />
+    <Property Name="companyImage" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="company" Relationship="Self.company_image_company" FromRole="companyLogo" ToRole="company" />
+  </EntityType>
+  <EntityType Name="educationDetail">
+    <Key>
+      <PropertyRef Name="userAccountID" />
+      <PropertyRef Name="certificateDegree" />
+      <PropertyRef Name="major" />
+    </Key>
+    <Property Name="userAccountID" Type="Int32" Nullable="false" />
+    <Property Name="certificateDegree" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="major" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="institutionName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="startDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="completionDate" Type="DateTime" Precision="0" />
+    <Property Name="percentage" Type="Int32" />
+    <Property Name="gpa" Type="Int32" />
+    <NavigationProperty Name="studentProfile" Relationship="Self.educ_dtl_seeker_profile" FromRole="educationDetail" ToRole="studentProfile" />
+  </EntityType>
+  <EntityType Name="jobApplicationStatu">
+    <Key>
+      <PropertyRef Name="jobApplicationStatusID" />
+    </Key>
+    <Property Name="jobApplicationStatusID" Type="Int32" Nullable="false" />
+    <Property Name="statusDesc" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="jobPostActivities" Relationship="Self.job_post_act_job_app_status" FromRole="jobApplicationStatus" ToRole="jobPostActivity" />
+  </EntityType>
+  <EntityType Name="jobLocation">
+    <Key>
+      <PropertyRef Name="jobLocationID" />
+    </Key>
+    <Property Name="jobLocationID" Type="Int32" Nullable="false" />
+    <Property Name="address1" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="address2" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="city" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="state" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="country" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="zip" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="jobPostings" Relationship="Self.jobLocationID" FromRole="jobLocation" ToRole="jobPosting" />
+  </EntityType>
+  <EntityType Name="jobPostAction">
+    <Key>
+      <PropertyRef Name="jobPostActionID" />
+    </Key>
+    <Property Name="jobPostActionID" Type="Int32" Nullable="false" />
+    <Property Name="actionName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="jobPostActivityLogs" Relationship="Self.job_post_act_log_job_post_act" FromRole="jobPostAction" ToRole="jobPostActivityLog" />
+  </EntityType>
+  <EntityType Name="jobPostActivity">
+    <Key>
+      <PropertyRef Name="jobPostActivityID" />
+    </Key>
+    <Property Name="jobPostActivityID" Type="Int32" Nullable="false" />
+    <Property Name="userAccountID" Type="Int32" Nullable="false" />
+    <Property Name="jobPostingID" Type="Int32" Nullable="false" />
+    <Property Name="applyDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="jobApplicationStatusID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="jobApplicationStatu" Relationship="Self.job_post_act_job_app_status" FromRole="jobPostActivity" ToRole="jobApplicationStatus" />
+    <NavigationProperty Name="jobPostActivityLogs" Relationship="Self.job_post_act_log_job_post_act1" FromRole="jobPostActivity" ToRole="jobPostActivityLog" />
+    <NavigationProperty Name="userAccount" Relationship="Self.job_post_act_user_register" FromRole="jobPostActivity" ToRole="userAccount" />
+    <NavigationProperty Name="jobPosting" Relationship="Self.job_post_activity_job_post" FromRole="jobPostActivity" ToRole="jobPosting" />
+  </EntityType>
+  <EntityType Name="jobPostActivityLog">
+    <Key>
+      <PropertyRef Name="jobPostActivityLogID" />
+    </Key>
+    <Property Name="jobPostActivityLogID" Type="Int32" Nullable="false" />
+    <Property Name="jobPostActivityID" Type="Int32" Nullable="false" />
+    <Property Name="jobPostActionID" Type="Int32" Nullable="false" />
+    <Property Name="actionDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="userAccountID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="jobPostAction" Relationship="Self.job_post_act_log_job_post_act" FromRole="jobPostActivityLog" ToRole="jobPostAction" />
+    <NavigationProperty Name="jobPostActivity" Relationship="Self.job_post_act_log_job_post_act1" FromRole="jobPostActivityLog" ToRole="jobPostActivity" />
+  </EntityType>
+  <EntityType Name="jobPosting">
+    <Key>
+      <PropertyRef Name="jobPostingID" />
+    </Key>
+    <Property Name="jobPostingID" Type="Int32" Nullable="false" />
+    <Property Name="jobTypeID" Type="Int32" Nullable="false" />
+    <Property Name="companyID" Type="Int32" Nullable="false" />
+    <Property Name="jobLocationID" Type="Int32" Nullable="false" />
+    <Property Name="userAccountID" Type="Int32" Nullable="false" />
+    <Property Name="jobCategoryID" Type="Int32" Nullable="false" />
+    <Property Name="applicantTypeID" Type="Int32" Nullable="false" />
+    <Property Name="createdDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="jobDescription" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="jobTitle" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="numOpenings" Type="Int32" Nullable="false" />
+    <Property Name="hoursPerWeek" Type="Int32" Nullable="false" />
+    <Property Name="wageSalary" Type="Decimal" Precision="8" Scale="2" Nullable="false" />
+    <Property Name="startDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="endDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="qualifications" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="applicationInstructions" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="applicationWebsite" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="postingDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="expirationDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="enabled" Type="Boolean" Nullable="false" />
+    <Property Name="numViews" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="company" Relationship="Self.job_post_company" FromRole="jobPosting" ToRole="company" />
+    <NavigationProperty Name="jobLocation" Relationship="Self.jobLocationID" FromRole="jobPosting" ToRole="jobLocation" />
+    <NavigationProperty Name="jobPostActivities" Relationship="Self.job_post_activity_job_post" FromRole="jobPosting" ToRole="jobPostActivity" />
+    <NavigationProperty Name="jobType" Relationship="Self.job_post_job_type" FromRole="jobPosting" ToRole="jobType" />
+    <NavigationProperty Name="jobPostSkillSets" Relationship="Self.job_post_skill_set_job_post" FromRole="jobPosting" ToRole="jobPostSkillSet" />
+    <NavigationProperty Name="userAccount" Relationship="Self.job_post_user_register" FromRole="jobPosting" ToRole="userAccount" />
+  </EntityType>
+  <EntityType Name="jobPostSkillSet">
+    <Key>
+      <PropertyRef Name="skillSetID" />
+      <PropertyRef Name="jobPostingID" />
+    </Key>
+    <Property Name="skillSetID" Type="Int32" Nullable="false" />
+    <Property Name="jobPostingID" Type="Int32" Nullable="false" />
+    <Property Name="skillLevel" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="jobPosting" Relationship="Self.job_post_skill_set_job_post" FromRole="jobPostSkillSet" ToRole="jobPosting" />
+    <NavigationProperty Name="skillSet" Relationship="Self.job_post_skill_set_skill_set" FromRole="jobPostSkillSet" ToRole="skillSet" />
+  </EntityType>
+  <EntityType Name="jobType">
+    <Key>
+      <PropertyRef Name="jobTypeID" />
+    </Key>
+    <Property Name="jobTypeID" Type="Int32" Nullable="false" />
+    <Property Name="jobTypeName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="jobPostings" Relationship="Self.job_post_job_type" FromRole="jobType" ToRole="jobPosting" />
+  </EntityType>
+  <EntityType Name="skillSet">
+    <Key>
+      <PropertyRef Name="skillSetID" />
+    </Key>
+    <Property Name="skillSetID" Type="Int32" Nullable="false" />
+    <Property Name="skillSetName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="jobPostSkillSets" Relationship="Self.job_post_skill_set_skill_set" FromRole="skillSet" ToRole="jobPostSkillSet" />
+    <NavigationProperty Name="studentSkillSets" Relationship="Self.seeker_skill_set_skill_set" FromRole="skillSet" ToRole="studentSkillSet" />
+  </EntityType>
+  <EntityType Name="studentExperience">
+    <Key>
+      <PropertyRef Name="userAccountID" />
+      <PropertyRef Name="startDate" />
+      <PropertyRef Name="endDate" />
+    </Key>
+    <Property Name="userAccountID" Type="Int32" Nullable="false" />
+    <Property Name="currentJob" Type="Boolean" Nullable="false" />
+    <Property Name="startDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="endDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="jobTitle" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="companyName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="jobCity" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="jobState" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="jobCountry" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="description" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="studentProfile" Relationship="Self.exp_dtl_seeker_profile" FromRole="studentExperience" ToRole="studentProfile" />
+  </EntityType>
+  <EntityType Name="studentProfile">
+    <Key>
+      <PropertyRef Name="userAccountID" />
+    </Key>
+    <Property Name="userAccountID" Type="Int32" Nullable="false" />
+    <Property Name="firstName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="lastName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="address1" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="address2" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="city" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="state" Type="String" MaxLength="2" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="zip" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="phone1" Type="Int32" Nullable="false" />
+    <Property Name="phone2" Type="Int32" Nullable="false" />
+    <Property Name="cellPhone" Type="Int32" Nullable="false" />
+    <Property Name="cellProvider" Type="Int32" Nullable="false" />
+    <Property Name="website" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="employerViewing" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="educationDetails" Relationship="Self.educ_dtl_seeker_profile" FromRole="studentProfile" ToRole="educationDetail" />
+    <NavigationProperty Name="studentExperiences" Relationship="Self.exp_dtl_seeker_profile" FromRole="studentProfile" ToRole="studentExperience" />
+    <NavigationProperty Name="userAccount" Relationship="Self.seeker_profile_user_register" FromRole="studentProfile" ToRole="userAccount" />
+    <NavigationProperty Name="studentSkillSets" Relationship="Self.skill_set_seeker_profile" FromRole="studentProfile" ToRole="studentSkillSet" />
+  </EntityType>
+  <EntityType Name="studentSkillSet">
+    <Key>
+      <PropertyRef Name="userAccountID" />
+      <PropertyRef Name="skillSetID" />
+    </Key>
+    <Property Name="userAccountID" Type="Int32" Nullable="false" />
+    <Property Name="skillSetID" Type="Int32" Nullable="false" />
+    <Property Name="skillLevel" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="skillSet" Relationship="Self.seeker_skill_set_skill_set" FromRole="studentSkillSet" ToRole="skillSet" />
+    <NavigationProperty Name="studentProfile" Relationship="Self.skill_set_seeker_profile" FromRole="studentSkillSet" ToRole="studentProfile" />
+  </EntityType>
+  <EntityType Name="userAccount">
+    <Key>
+      <PropertyRef Name="userAccountID" />
+    </Key>
+    <Property Name="userAccountID" Type="Int32" Nullable="false" />
+    <Property Name="userTypeID" Type="Int32" Nullable="false" />
+    <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="password" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="enabled" Type="Boolean" Nullable="false" />
+    <Property Name="registrationDate" Type="DateTime" Nullable="false" Precision="0" />
+    <NavigationProperty Name="jobPostActivities" Relationship="Self.job_post_act_user_register" FromRole="userAccount" ToRole="jobPostActivity" />
+    <NavigationProperty Name="jobPostings" Relationship="Self.job_post_user_register" FromRole="userAccount" ToRole="jobPosting" />
+    <NavigationProperty Name="studentProfile" Relationship="Self.seeker_profile_user_register" FromRole="userAccount" ToRole="studentProfile" />
+    <NavigationProperty Name="userLog" Relationship="Self.use_log_user_register" FromRole="userAccount" ToRole="userLog" />
+    <NavigationProperty Name="userType" Relationship="Self.user_register_user_type" FromRole="userAccount" ToRole="userType" />
+  </EntityType>
+  <EntityType Name="userLog">
+    <Key>
+      <PropertyRef Name="userAccountID" />
+    </Key>
+    <Property Name="userAccountID" Type="Int32" Nullable="false" />
+    <Property Name="lastLoginDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="lastApplyDate" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="userAccount" Relationship="Self.use_log_user_register" FromRole="userLog" ToRole="userAccount" />
+  </EntityType>
+  <EntityType Name="userType">
+    <Key>
+      <PropertyRef Name="userTypeID" />
+    </Key>
+    <Property Name="userTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="userTypeName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="userAccounts" Relationship="Self.user_register_user_type" FromRole="userType" ToRole="userAccount" />
+  </EntityType>
+  <Association Name="businessIndustryID">
+    <End Role="businessIndustry" Type="Self.businessIndustry" Multiplicity="1" />
+    <End Role="companyIndustry" Type="Self.companyIndustry" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="businessIndustry">
+        <PropertyRef Name="businessIndustryID" />
+      </Principal>
+      <Dependent Role="companyIndustry">
+        <PropertyRef Name="businessIndustryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="company_image_company">
+    <End Role="company" Type="Self.company" Multiplicity="1" />
+    <End Role="companyLogo" Type="Self.companyLogo" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="company">
+        <PropertyRef Name="companyID" />
+      </Principal>
+      <Dependent Role="companyLogo">
+        <PropertyRef Name="companyID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="companyID">
+    <End Role="company" Type="Self.company" Multiplicity="1" />
+    <End Role="companyIndustry" Type="Self.companyIndustry" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="company">
+        <PropertyRef Name="companyID" />
+      </Principal>
+      <Dependent Role="companyIndustry">
+        <PropertyRef Name="companyID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="job_post_company">
+    <End Role="company" Type="Self.company" Multiplicity="1" />
+    <End Role="jobPosting" Type="Self.jobPosting" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="company">
+        <PropertyRef Name="companyID" />
+      </Principal>
+      <Dependent Role="jobPosting">
+        <PropertyRef Name="companyID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="educ_dtl_seeker_profile">
+    <End Role="studentProfile" Type="Self.studentProfile" Multiplicity="1" />
+    <End Role="educationDetail" Type="Self.educationDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="studentProfile">
+        <PropertyRef Name="userAccountID" />
+      </Principal>
+      <Dependent Role="educationDetail">
+        <PropertyRef Name="userAccountID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="job_post_act_job_app_status">
+    <End Role="jobApplicationStatus" Type="Self.jobApplicationStatu" Multiplicity="1" />
+    <End Role="jobPostActivity" Type="Self.jobPostActivity" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="jobApplicationStatus">
+        <PropertyRef Name="jobApplicationStatusID" />
+      </Principal>
+      <Dependent Role="jobPostActivity">
+        <PropertyRef Name="jobApplicationStatusID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="jobLocationID">
+    <End Role="jobLocation" Type="Self.jobLocation" Multiplicity="1" />
+    <End Role="jobPosting" Type="Self.jobPosting" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="jobLocation">
+        <PropertyRef Name="jobLocationID" />
+      </Principal>
+      <Dependent Role="jobPosting">
+        <PropertyRef Name="jobLocationID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="job_post_act_log_job_post_act">
+    <End Role="jobPostAction" Type="Self.jobPostAction" Multiplicity="1" />
+    <End Role="jobPostActivityLog" Type="Self.jobPostActivityLog" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="jobPostAction">
+        <PropertyRef Name="jobPostActionID" />
+      </Principal>
+      <Dependent Role="jobPostActivityLog">
+        <PropertyRef Name="jobPostActionID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="job_post_act_log_job_post_act1">
+    <End Role="jobPostActivity" Type="Self.jobPostActivity" Multiplicity="1" />
+    <End Role="jobPostActivityLog" Type="Self.jobPostActivityLog" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="jobPostActivity">
+        <PropertyRef Name="jobPostActivityID" />
+      </Principal>
+      <Dependent Role="jobPostActivityLog">
+        <PropertyRef Name="jobPostActivityID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="job_post_act_user_register">
+    <End Role="userAccount" Type="Self.userAccount" Multiplicity="1" />
+    <End Role="jobPostActivity" Type="Self.jobPostActivity" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="userAccount">
+        <PropertyRef Name="userAccountID" />
+      </Principal>
+      <Dependent Role="jobPostActivity">
+        <PropertyRef Name="userAccountID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="job_post_activity_job_post">
+    <End Role="jobPosting" Type="Self.jobPosting" Multiplicity="1" />
+    <End Role="jobPostActivity" Type="Self.jobPostActivity" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="jobPosting">
+        <PropertyRef Name="jobPostingID" />
+      </Principal>
+      <Dependent Role="jobPostActivity">
+        <PropertyRef Name="jobPostingID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="job_post_job_type">
+    <End Role="jobType" Type="Self.jobType" Multiplicity="1" />
+    <End Role="jobPosting" Type="Self.jobPosting" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="jobType">
+        <PropertyRef Name="jobTypeID" />
+      </Principal>
+      <Dependent Role="jobPosting">
+        <PropertyRef Name="jobTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="job_post_skill_set_job_post">
+    <End Role="jobPosting" Type="Self.jobPosting" Multiplicity="1" />
+    <End Role="jobPostSkillSet" Type="Self.jobPostSkillSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="jobPosting">
+        <PropertyRef Name="jobPostingID" />
+      </Principal>
+      <Dependent Role="jobPostSkillSet">
+        <PropertyRef Name="jobPostingID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="job_post_user_register">
+    <End Role="userAccount" Type="Self.userAccount" Multiplicity="1" />
+    <End Role="jobPosting" Type="Self.jobPosting" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="userAccount">
+        <PropertyRef Name="userAccountID" />
+      </Principal>
+      <Dependent Role="jobPosting">
+        <PropertyRef Name="userAccountID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="job_post_skill_set_skill_set">
+    <End Role="skillSet" Type="Self.skillSet" Multiplicity="1" />
+    <End Role="jobPostSkillSet" Type="Self.jobPostSkillSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="skillSet">
+        <PropertyRef Name="skillSetID" />
+      </Principal>
+      <Dependent Role="jobPostSkillSet">
+        <PropertyRef Name="skillSetID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="seeker_skill_set_skill_set">
+    <End Role="skillSet" Type="Self.skillSet" Multiplicity="1" />
+    <End Role="studentSkillSet" Type="Self.studentSkillSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="skillSet">
+        <PropertyRef Name="skillSetID" />
+      </Principal>
+      <Dependent Role="studentSkillSet">
+        <PropertyRef Name="skillSetID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="exp_dtl_seeker_profile">
+    <End Role="studentProfile" Type="Self.studentProfile" Multiplicity="1" />
+    <End Role="studentExperience" Type="Self.studentExperience" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="studentProfile">
+        <PropertyRef Name="userAccountID" />
+      </Principal>
+      <Dependent Role="studentExperience">
+        <PropertyRef Name="userAccountID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="seeker_profile_user_register">
+    <End Role="userAccount" Type="Self.userAccount" Multiplicity="1" />
+    <End Role="studentProfile" Type="Self.studentProfile" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="userAccount">
+        <PropertyRef Name="userAccountID" />
+      </Principal>
+      <Dependent Role="studentProfile">
+        <PropertyRef Name="userAccountID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="skill_set_seeker_profile">
+    <End Role="studentProfile" Type="Self.studentProfile" Multiplicity="1" />
+    <End Role="studentSkillSet" Type="Self.studentSkillSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="studentProfile">
+        <PropertyRef Name="userAccountID" />
+      </Principal>
+      <Dependent Role="studentSkillSet">
+        <PropertyRef Name="userAccountID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="use_log_user_register">
+    <End Role="userAccount" Type="Self.userAccount" Multiplicity="1" />
+    <End Role="userLog" Type="Self.userLog" Multiplicity="0..1" />
+    <ReferentialConstraint>
+      <Principal Role="userAccount">
+        <PropertyRef Name="userAccountID" />
+      </Principal>
+      <Dependent Role="userLog">
+        <PropertyRef Name="userAccountID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="user_register_user_type">
+    <End Role="userType" Type="Self.userType" Multiplicity="1" />
+    <End Role="userAccount" Type="Self.userAccount" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="userType">
+        <PropertyRef Name="userTypeID" />
+      </Principal>
+      <Dependent Role="userAccount">
+        <PropertyRef Name="userTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="HireMeEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="businessIndustries" EntityType="Self.businessIndustry" />
+    <EntitySet Name="companies" EntityType="Self.company" />
+    <EntitySet Name="companyIndustries" EntityType="Self.companyIndustry" />
+    <EntitySet Name="companyLogoes" EntityType="Self.companyLogo" />
+    <EntitySet Name="educationDetails" EntityType="Self.educationDetail" />
+    <EntitySet Name="jobApplicationStatus" EntityType="Self.jobApplicationStatu" />
+    <EntitySet Name="jobLocations" EntityType="Self.jobLocation" />
+    <EntitySet Name="jobPostActions" EntityType="Self.jobPostAction" />
+    <EntitySet Name="jobPostActivities" EntityType="Self.jobPostActivity" />
+    <EntitySet Name="jobPostActivityLogs" EntityType="Self.jobPostActivityLog" />
+    <EntitySet Name="jobPostings" EntityType="Self.jobPosting" />
+    <EntitySet Name="jobPostSkillSets" EntityType="Self.jobPostSkillSet" />
+    <EntitySet Name="jobTypes" EntityType="Self.jobType" />
+    <EntitySet Name="skillSets" EntityType="Self.skillSet" />
+    <EntitySet Name="studentExperiences" EntityType="Self.studentExperience" />
+    <EntitySet Name="studentProfiles" EntityType="Self.studentProfile" />
+    <EntitySet Name="studentSkillSets" EntityType="Self.studentSkillSet" />
+    <EntitySet Name="userAccounts" EntityType="Self.userAccount" />
+    <EntitySet Name="userLogs" EntityType="Self.userLog" />
+    <EntitySet Name="userTypes" EntityType="Self.userType" />
+    <AssociationSet Name="businessIndustryID" Association="Self.businessIndustryID">
+      <End Role="businessIndustry" EntitySet="businessIndustries" />
+      <End Role="companyIndustry" EntitySet="companyIndustries" />
+    </AssociationSet>
+    <AssociationSet Name="company_image_company" Association="Self.company_image_company">
+      <End Role="company" EntitySet="companies" />
+      <End Role="companyLogo" EntitySet="companyLogoes" />
+    </AssociationSet>
+    <AssociationSet Name="companyID" Association="Self.companyID">
+      <End Role="company" EntitySet="companies" />
+      <End Role="companyIndustry" EntitySet="companyIndustries" />
+    </AssociationSet>
+    <AssociationSet Name="job_post_company" Association="Self.job_post_company">
+      <End Role="company" EntitySet="companies" />
+      <End Role="jobPosting" EntitySet="jobPostings" />
+    </AssociationSet>
+    <AssociationSet Name="educ_dtl_seeker_profile" Association="Self.educ_dtl_seeker_profile">
+      <End Role="studentProfile" EntitySet="studentProfiles" />
+      <End Role="educationDetail" EntitySet="educationDetails" />
+    </AssociationSet>
+    <AssociationSet Name="job_post_act_job_app_status" Association="Self.job_post_act_job_app_status">
+      <End Role="jobApplicationStatus" EntitySet="jobApplicationStatus" />
+      <End Role="jobPostActivity" EntitySet="jobPostActivities" />
+    </AssociationSet>
+    <AssociationSet Name="jobLocationID" Association="Self.jobLocationID">
+      <End Role="jobLocation" EntitySet="jobLocations" />
+      <End Role="jobPosting" EntitySet="jobPostings" />
+    </AssociationSet>
+    <AssociationSet Name="job_post_act_log_job_post_act" Association="Self.job_post_act_log_job_post_act">
+      <End Role="jobPostAction" EntitySet="jobPostActions" />
+      <End Role="jobPostActivityLog" EntitySet="jobPostActivityLogs" />
+    </AssociationSet>
+    <AssociationSet Name="job_post_act_log_job_post_act1" Association="Self.job_post_act_log_job_post_act1">
+      <End Role="jobPostActivity" EntitySet="jobPostActivities" />
+      <End Role="jobPostActivityLog" EntitySet="jobPostActivityLogs" />
+    </AssociationSet>
+    <AssociationSet Name="job_post_act_user_register" Association="Self.job_post_act_user_register">
+      <End Role="userAccount" EntitySet="userAccounts" />
+      <End Role="jobPostActivity" EntitySet="jobPostActivities" />
+    </AssociationSet>
+    <AssociationSet Name="job_post_activity_job_post" Association="Self.job_post_activity_job_post">
+      <End Role="jobPosting" EntitySet="jobPostings" />
+      <End Role="jobPostActivity" EntitySet="jobPostActivities" />
+    </AssociationSet>
+    <AssociationSet Name="job_post_job_type" Association="Self.job_post_job_type">
+      <End Role="jobType" EntitySet="jobTypes" />
+      <End Role="jobPosting" EntitySet="jobPostings" />
+    </AssociationSet>
+    <AssociationSet Name="job_post_skill_set_job_post" Association="Self.job_post_skill_set_job_post">
+      <End Role="jobPosting" EntitySet="jobPostings" />
+      <End Role="jobPostSkillSet" EntitySet="jobPostSkillSets" />
+    </AssociationSet>
+    <AssociationSet Name="job_post_user_register" Association="Self.job_post_user_register">
+      <End Role="userAccount" EntitySet="userAccounts" />
+      <End Role="jobPosting" EntitySet="jobPostings" />
+    </AssociationSet>
+    <AssociationSet Name="job_post_skill_set_skill_set" Association="Self.job_post_skill_set_skill_set">
+      <End Role="skillSet" EntitySet="skillSets" />
+      <End Role="jobPostSkillSet" EntitySet="jobPostSkillSets" />
+    </AssociationSet>
+    <AssociationSet Name="seeker_skill_set_skill_set" Association="Self.seeker_skill_set_skill_set">
+      <End Role="skillSet" EntitySet="skillSets" />
+      <End Role="studentSkillSet" EntitySet="studentSkillSets" />
+    </AssociationSet>
+    <AssociationSet Name="exp_dtl_seeker_profile" Association="Self.exp_dtl_seeker_profile">
+      <End Role="studentProfile" EntitySet="studentProfiles" />
+      <End Role="studentExperience" EntitySet="studentExperiences" />
+    </AssociationSet>
+    <AssociationSet Name="seeker_profile_user_register" Association="Self.seeker_profile_user_register">
+      <End Role="userAccount" EntitySet="userAccounts" />
+      <End Role="studentProfile" EntitySet="studentProfiles" />
+    </AssociationSet>
+    <AssociationSet Name="skill_set_seeker_profile" Association="Self.skill_set_seeker_profile">
+      <End Role="studentProfile" EntitySet="studentProfiles" />
+      <End Role="studentSkillSet" EntitySet="studentSkillSets" />
+    </AssociationSet>
+    <AssociationSet Name="use_log_user_register" Association="Self.use_log_user_register">
+      <End Role="userAccount" EntitySet="userAccounts" />
+      <End Role="userLog" EntitySet="userLogs" />
+    </AssociationSet>
+    <AssociationSet Name="user_register_user_type" Association="Self.user_register_user_type">
+      <End Role="userType" EntitySet="userTypes" />
+      <End Role="userAccount" EntitySet="userAccounts" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
