@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="4695815e9ea34fe096c3ca0f75d52289" Name="Diagram1">
+        <EntityTypeShape EntityType="HireMeModel.businessIndustry" Width="1.5" PointX="0.75" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="HireMeModel.company" Width="1.5" PointX="0.75" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="HireMeModel.companyIndustry" Width="1.5" PointX="3" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="HireMeModel.companyLogo" Width="1.5" PointX="3" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="HireMeModel.educationDetail" Width="1.5" PointX="8.25" PointY="14.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="HireMeModel.jobApplicationStatu" Width="1.5" PointX="6" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="HireMeModel.jobLocation" Width="1.5" PointX="3.75" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="HireMeModel.jobPostAction" Width="1.5" PointX="8.25" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="HireMeModel.jobPostActivity" Width="1.5" PointX="8.25" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="HireMeModel.jobPostActivityLog" Width="1.5" PointX="10.5" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="HireMeModel.jobPosting" Width="1.5" PointX="6" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="HireMeModel.jobPostSkillSet" Width="1.5" PointX="11.25" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="HireMeModel.jobType" Width="1.5" PointX="3.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="HireMeModel.skillSet" Width="1.5" PointX="9" PointY="11" IsExpanded="true" />
+        <EntityTypeShape EntityType="HireMeModel.studentExperience" Width="1.5" PointX="8.25" PointY="17.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="HireMeModel.studentProfile" Width="1.5" PointX="6" PointY="15.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="HireMeModel.studentSkillSet" Width="1.5" PointX="11.25" PointY="14.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="HireMeModel.userAccount" Width="1.5" PointX="3.75" PointY="13.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="HireMeModel.userLog" Width="1.5" PointX="6" PointY="20.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="HireMeModel.userType" Width="1.5" PointX="1.5" PointY="13.875" IsExpanded="true" />
+        <AssociationConnector Association="HireMeModel.businessIndustryID" ManuallyRouted="false" />
+        <AssociationConnector Association="HireMeModel.company_image_company" ManuallyRouted="false" />
+        <AssociationConnector Association="HireMeModel.companyID" ManuallyRouted="false" />
+        <AssociationConnector Association="HireMeModel.job_post_company" ManuallyRouted="false" />
+        <AssociationConnector Association="HireMeModel.educ_dtl_seeker_profile" ManuallyRouted="false" />
+        <AssociationConnector Association="HireMeModel.job_post_act_job_app_status" ManuallyRouted="false" />
+        <AssociationConnector Association="HireMeModel.jobLocationID" ManuallyRouted="false" />
+        <AssociationConnector Association="HireMeModel.job_post_act_log_job_post_act" ManuallyRouted="false" />
+        <AssociationConnector Association="HireMeModel.job_post_act_log_job_post_act1" ManuallyRouted="false" />
+        <AssociationConnector Association="HireMeModel.job_post_act_user_register" ManuallyRouted="false" />
+        <AssociationConnector Association="HireMeModel.job_post_activity_job_post" ManuallyRouted="false" />
+        <AssociationConnector Association="HireMeModel.job_post_job_type" ManuallyRouted="false" />
+        <AssociationConnector Association="HireMeModel.job_post_skill_set_job_post" ManuallyRouted="false" />
+        <AssociationConnector Association="HireMeModel.job_post_user_register" ManuallyRouted="false" />
+        <AssociationConnector Association="HireMeModel.job_post_skill_set_skill_set" ManuallyRouted="false" />
+        <AssociationConnector Association="HireMeModel.seeker_skill_set_skill_set" ManuallyRouted="false" />
+        <AssociationConnector Association="HireMeModel.exp_dtl_seeker_profile" ManuallyRouted="false" />
+        <AssociationConnector Association="HireMeModel.seeker_profile_user_register" ManuallyRouted="false" />
+        <AssociationConnector Association="HireMeModel.skill_set_seeker_profile" ManuallyRouted="false" />
+        <AssociationConnector Association="HireMeModel.use_log_user_register" ManuallyRouted="false" />
+        <AssociationConnector Association="HireMeModel.user_register_user_type" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
