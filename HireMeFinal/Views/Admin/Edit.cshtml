@@ -10,7 +10,7 @@
         <h3>Edit @Model.jobTitle</h3>
     </div>
 
-    @using (Html.BeginForm())
+    @using (Html.BeginForm("Edit", "Admin"))
     {
         <div class="panel-body">
             @Html.HiddenFor(m => m.jobPostingID)
@@ -20,7 +20,11 @@
                 {
                     <div class="form-group">
                         <label>@(prop.DisplayName ?? prop.PropertyName)</label>
-                        @if (prop.PropertyName == "jobDescription")
+                        @if (prop.PropertyName == "companyName")
+                        {
+                            @Html.Value(prop.PropertyName)
+                        }
+                        else if (prop.PropertyName == "jobDescription")
                         {
                             @Html.TextArea(prop.PropertyName, null, new {@class = "form-control", rows = 5})
                         }

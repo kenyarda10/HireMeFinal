@@ -13,5 +13,7 @@ namespace HireMeFinal.Abstract
         IEnumerable<Postings> Postings { get; }
 
         void SavePosting(Postings posting);
+
+        Postings DeletePostings(int postingsID);
     }
 }

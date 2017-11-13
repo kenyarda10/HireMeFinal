@@ -43,5 +43,21 @@ namespace HireMeFinal.Controllers
                 return View(posting);
             }
         }
+
+        public ViewResult Create()
+        {
+            return View("Edit", new Postings());
+        }
+
+        [HttpPost]
+        public ActionResult Delete(int postingID)
+        {
+            Postings deletedPostings = repository.DeletePostings(postingID);
+            if (deletedPostings != null)
+            {
+                TempData["message"] = string.Format("{0} was deleted", deletedPostings.jobTitle);
+            }
+            return RedirectToAction("Index");
+        }
     }
 }

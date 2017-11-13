@@ -34,5 +34,16 @@ namespace HireMeFinal.Concrete
             }
             context.SaveChanges();
         }
+
+        public Postings DeletePostings(int postingID)
+        {
+            Postings dbEntry = context.Postings.Find(postingID);
+            if (dbEntry != null)
+            {
+                context.Postings.Remove(dbEntry);
+                context.SaveChanges();
+            }
+            return dbEntry;
+        }
     }
 }
