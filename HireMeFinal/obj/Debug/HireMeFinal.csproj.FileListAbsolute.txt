@@ -158,3 +158,6 @@ C:\Users\Kenyarda\Documents\Visual Studio 2015\Projects\HireMeFinal\HireMeFinal\
 C:\Users\Kenyarda\Documents\Visual Studio 2015\Projects\HireMeFinal\HireMeFinal\obj\Debug\HireMeFinal.csproj.GenerateResource.Cache
 C:\Users\Kenyarda\Documents\Visual Studio 2015\Projects\HireMeFinal\HireMeFinal\obj\Debug\HireMeFinal.Migrations.UserProfileUpdates.resources
 >>>>>>> da7e8aa7edbf5dd9a0ef97e2ddbe4dfc3bb41d3e
+C:\Users\Keith\Documents\GitHub\HireMeFinal\HireMeFinal\obj\Debug\HireMeFinal.Migrations.InitialCreate.resources
+C:\Users\Keith\Documents\GitHub\HireMeFinal\HireMeFinal\obj\Debug\HireMeFinal.Migrations.UserProfileUpdates.resources
+C:\Users\Keith\Documents\GitHub\HireMeFinal\HireMeFinal\obj\Debug\HireMeFinal.csproj.GenerateResource.Cache
