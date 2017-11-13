@@ -65,40 +65,6 @@ namespace HireMeFinal.Models
     public class RegisterViewModel
     {
         [Required]
-        [Display(Name = "First Name")]
-        public string firstName { get; set; }
-
-        [Required]
-        [Display(Name = "Last Name")]
-        public string lastName { get; set; }
-
-        [Required]
-        [Display(Name = "Address")]
-        public string Address1 { get; set; }
-
-        
-        [Display(Name = "Apt/Bldg")]
-        public string Address2 { get; set; }
-
-        [Required]
-        [Display(Name = "State")]
-        public string State { get; set; }
-
-        [Required]
-        [Display(Name = "City")]
-        public string City { get; set; }
-
-        [Required]
-        [Display(Name = "Zip Code")]
-        public int zipCode { get; set; }
-
-        [Display(Name = "Home Phone")]
-        public string PhoneNumber { get; set; }
-
-        [Display(Name = "Cell Phone")]
-        public string cellPhone { get; set; }
-
-        [Required]
         [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }
@@ -113,10 +79,6 @@ namespace HireMeFinal.Models
         [Display(Name = "Confirm password")]
         [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
-
-        [Required]
-        [Display(Name = "Major")]
-        public string Major { get; set; }
     }
 
     public class ResetPasswordViewModel
