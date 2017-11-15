@@ -13,9 +13,9 @@ namespace HireMeFinal.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class HireMeEntities : DbContext
+    public partial class HireMeFinal : DbContext
     {
-        public HireMeEntities()
+        public HireMeFinal()
             : base("name=HireMeEntities")
         {
         }

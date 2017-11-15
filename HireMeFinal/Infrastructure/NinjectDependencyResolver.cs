@@ -5,9 +5,9 @@ using System.Web.Mvc;
 using Moq;
 using Ninject;
 using HireMeFinal.Abstract;
-using HireMeFinal.Models;
 using HireMeFinal.Concrete;
 using HireMeFinal.Entities;
+using jobPosting = HireMeFinal.Models.jobPosting;
 
 namespace HireMeFinal.Infrastructure
 {
@@ -31,14 +31,14 @@ namespace HireMeFinal.Infrastructure
         {
             
             Mock<IPostingRepository> mock = new Mock<IPostingRepository>();
-            mock.Setup(m => m.Postings).Returns(new List<Postings> {
-                new Postings { jobPostingID = 1, jobTitle = "Job Title 1", jobDescription = "jobDescription 1", companyName = "company 1"},
-                new Postings { jobPostingID = 2, jobTitle = "Job Title 2", jobDescription = "jobDescription 2", companyName = "company 2"},
-                new Postings { jobPostingID = 3, jobTitle = "Job Title 3", jobDescription = "jobDescription 3", companyName = "company 3"}
+            mock.Setup(m => m.Postings).Returns(new List<Models.jobPosting> {
+                new jobPosting { jobPostingID = 1, jobTitle = "Job Title 1", jobDescription = "jobDescription 1", companyID = 3},
+                new jobPosting { jobPostingID = 2, jobTitle = "Job Title 2", jobDescription = "jobDescription 2", companyID = 4},
+                new jobPosting { jobPostingID = 3, jobTitle = "Job Title 3", jobDescription = "jobDescription 3", companyID = 8}
                 });
-            kernel.Bind<IPostingRepository>().ToConstant(mock.Object);
+            //kernel.Bind<IPostingRepository>().ToConstant(mock.Object);
 
-            //kernel.Bind<IPostingRepository>().To<EFPostingRepository>();
+            kernel.Bind<IPostingRepository>().To<EFPostingRepository>();
         }
     }
 }

@@ -4,19 +4,18 @@ using System.Linq;
 using System.Web;
 using HireMeFinal.Abstract;
 using HireMeFinal.Models;
-using HireMeFinal.Entities;
 
 namespace HireMeFinal.Concrete
 {
     public class EFPostingRepository : IPostingRepository
     {
         private EFDbContext context = new EFDbContext();
-        public IEnumerable<Postings> Postings
+        public IEnumerable<Models.jobPosting> Postings
         {
             get { return context.Postings; }
         }
 
-        public void SavePosting(Postings posting)
+        public void SavePosting(jobPosting posting)
         {
             if (posting.jobPostingID == 0)
             {
@@ -24,20 +23,20 @@ namespace HireMeFinal.Concrete
             }
             else
             {
-                Postings dbEntry = context.Postings.Find(posting.jobPostingID);
+                jobPosting dbEntry = context.Postings.Find(posting.jobPostingID);
                 if (dbEntry != null)
                 {
                     dbEntry.jobTitle = posting.jobTitle;
-                    dbEntry.companyName = posting.companyName;
+                    dbEntry.company = posting.company;
                     dbEntry.jobDescription = posting.jobDescription;
                 }
             }
             context.SaveChanges();
         }
 
-        public Postings DeletePostings(int postingID)
+        public jobPosting DeletePostings(int postingID)
         {
-            Postings dbEntry = context.Postings.Find(postingID);
+            jobPosting dbEntry = context.Postings.Find(postingID);
             if (dbEntry != null)
             {
                 context.Postings.Remove(dbEntry);

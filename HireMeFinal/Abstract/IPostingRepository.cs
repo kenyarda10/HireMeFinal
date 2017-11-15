@@ -1,5 +1,4 @@
-﻿using HireMeFinal.Entities;
-using HireMeFinal.Models;
+﻿using HireMeFinal.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,10 +9,10 @@ namespace HireMeFinal.Abstract
 {
     public interface IPostingRepository
     {
-        IEnumerable<Postings> Postings { get; }
+        IEnumerable<Models.jobPosting> Postings { get; }
 
-        void SavePosting(Postings posting);
+        void SavePosting(jobPosting posting);
 
-        Postings DeletePostings(int postingsID);
+        jobPosting DeletePostings(int postingsID);
     }
 }

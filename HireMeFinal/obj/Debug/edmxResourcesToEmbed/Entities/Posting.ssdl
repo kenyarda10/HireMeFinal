@@ -1,0 +1,113 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="HireMePosting.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="company">
+    <Key>
+      <PropertyRef Name="companyID" />
+    </Key>
+    <Property Name="companyID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="companyName" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="companyDescription" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="establishmentDate" Type="date" Nullable="false" />
+    <Property Name="companyWebsite" Type="varchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="jobLocation">
+    <Key>
+      <PropertyRef Name="jobLocationID" />
+    </Key>
+    <Property Name="jobLocationID" Type="int" Nullable="false" />
+    <Property Name="address1" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="address2" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="city" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="state" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="country" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="zip" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="jobPosting">
+    <Key>
+      <PropertyRef Name="jobPostingID" />
+    </Key>
+    <Property Name="jobPostingID" Type="int" Nullable="false" />
+    <Property Name="jobTypeID" Type="int" Nullable="false" />
+    <Property Name="companyID" Type="int" Nullable="false" />
+    <Property Name="jobLocationID" Type="int" Nullable="false" />
+    <Property Name="userAccountID" Type="int" Nullable="false" />
+    <Property Name="jobCategoryID" Type="int" Nullable="false" />
+    <Property Name="applicantTypeID" Type="int" Nullable="false" />
+    <Property Name="createdDate" Type="date" Nullable="false" />
+    <Property Name="jobDescription" Type="varchar" MaxLength="500" Nullable="false" />
+    <Property Name="jobTitle" Type="varchar" MaxLength="20" Nullable="false" />
+    <Property Name="numOpenings" Type="int" Nullable="false" />
+    <Property Name="hoursPerWeek" Type="int" Nullable="false" />
+    <Property Name="wageSalary" Type="decimal" Precision="8" Scale="2" Nullable="false" />
+    <Property Name="startDate" Type="date" Nullable="false" />
+    <Property Name="endDate" Type="date" Nullable="false" />
+    <Property Name="qualifications" Type="varchar" MaxLength="200" Nullable="false" />
+    <Property Name="applicationInstructions" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="applicationWebsite" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="postingDate" Type="date" Nullable="false" />
+    <Property Name="expirationDate" Type="date" Nullable="false" />
+    <Property Name="enabled" Type="bit" Nullable="false" />
+    <Property Name="numViews" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="jobType">
+    <Key>
+      <PropertyRef Name="jobTypeID" />
+    </Key>
+    <Property Name="jobTypeID" Type="int" Nullable="false" />
+    <Property Name="jobTypeName" Type="varchar" MaxLength="20" Nullable="false" />
+  </EntityType>
+  <Association Name="job_post_company">
+    <End Role="company" Type="Self.company" Multiplicity="1" />
+    <End Role="jobPosting" Type="Self.jobPosting" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="company">
+        <PropertyRef Name="companyID" />
+      </Principal>
+      <Dependent Role="jobPosting">
+        <PropertyRef Name="companyID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="job_post_job_type">
+    <End Role="jobType" Type="Self.jobType" Multiplicity="1" />
+    <End Role="jobPosting" Type="Self.jobPosting" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="jobType">
+        <PropertyRef Name="jobTypeID" />
+      </Principal>
+      <Dependent Role="jobPosting">
+        <PropertyRef Name="jobTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="jobLocationID">
+    <End Role="jobLocation" Type="Self.jobLocation" Multiplicity="1" />
+    <End Role="jobPosting" Type="Self.jobPosting" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="jobLocation">
+        <PropertyRef Name="jobLocationID" />
+      </Principal>
+      <Dependent Role="jobPosting">
+        <PropertyRef Name="jobLocationID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="HireMePostingStoreContainer">
+    <EntitySet Name="company" EntityType="Self.company" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="jobLocation" EntityType="Self.jobLocation" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="jobPosting" EntityType="Self.jobPosting" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="jobType" EntityType="Self.jobType" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="job_post_company" Association="Self.job_post_company">
+      <End Role="company" EntitySet="company" />
+      <End Role="jobPosting" EntitySet="jobPosting" />
+    </AssociationSet>
+    <AssociationSet Name="job_post_job_type" Association="Self.job_post_job_type">
+      <End Role="jobType" EntitySet="jobType" />
+      <End Role="jobPosting" EntitySet="jobPosting" />
+    </AssociationSet>
+    <AssociationSet Name="jobLocationID" Association="Self.jobLocationID">
+      <End Role="jobLocation" EntitySet="jobLocation" />
+      <End Role="jobPosting" EntitySet="jobPosting" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -12,8 +12,8 @@ namespace HireMeFinal.Controllers
     {
         public ActionResult Posting()
         {
-            HireMeEntities db = new HireMeEntities();
-            List<jobPosting> postingList = db.jobPostings.ToList();
+            Models.HireMeFinal db = new Models.HireMeFinal();
+            List<Models.jobPosting> postingList = db.jobPostings.ToList();
 
             Postings postingVM = new Postings();
 

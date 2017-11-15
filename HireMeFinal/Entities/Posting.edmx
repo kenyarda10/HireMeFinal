@@ -1,0 +1,328 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="HireMePosting.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="company">
+          <Key>
+            <PropertyRef Name="companyID" />
+          </Key>
+          <Property Name="companyID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="companyName" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="companyDescription" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="establishmentDate" Type="date" Nullable="false" />
+          <Property Name="companyWebsite" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="jobLocation">
+          <Key>
+            <PropertyRef Name="jobLocationID" />
+          </Key>
+          <Property Name="jobLocationID" Type="int" Nullable="false" />
+          <Property Name="address1" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="address2" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="city" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="state" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="country" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="zip" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="jobPosting">
+          <Key>
+            <PropertyRef Name="jobPostingID" />
+          </Key>
+          <Property Name="jobPostingID" Type="int" Nullable="false" />
+          <Property Name="jobTypeID" Type="int" Nullable="false" />
+          <Property Name="companyID" Type="int" Nullable="false" />
+          <Property Name="jobLocationID" Type="int" Nullable="false" />
+          <Property Name="userAccountID" Type="int" Nullable="false" />
+          <Property Name="jobCategoryID" Type="int" Nullable="false" />
+          <Property Name="applicantTypeID" Type="int" Nullable="false" />
+          <Property Name="createdDate" Type="date" Nullable="false" />
+          <Property Name="jobDescription" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="jobTitle" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="numOpenings" Type="int" Nullable="false" />
+          <Property Name="hoursPerWeek" Type="int" Nullable="false" />
+          <Property Name="wageSalary" Type="decimal" Precision="8" Scale="2" Nullable="false" />
+          <Property Name="startDate" Type="date" Nullable="false" />
+          <Property Name="endDate" Type="date" Nullable="false" />
+          <Property Name="qualifications" Type="varchar" MaxLength="200" Nullable="false" />
+          <Property Name="applicationInstructions" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="applicationWebsite" Type="varchar" MaxLength="30" Nullable="false" />
+          <Property Name="postingDate" Type="date" Nullable="false" />
+          <Property Name="expirationDate" Type="date" Nullable="false" />
+          <Property Name="enabled" Type="bit" Nullable="false" />
+          <Property Name="numViews" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="jobType">
+          <Key>
+            <PropertyRef Name="jobTypeID" />
+          </Key>
+          <Property Name="jobTypeID" Type="int" Nullable="false" />
+          <Property Name="jobTypeName" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <Association Name="job_post_company">
+          <End Role="company" Type="Self.company" Multiplicity="1" />
+          <End Role="jobPosting" Type="Self.jobPosting" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="company">
+              <PropertyRef Name="companyID" />
+            </Principal>
+            <Dependent Role="jobPosting">
+              <PropertyRef Name="companyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="job_post_job_type">
+          <End Role="jobType" Type="Self.jobType" Multiplicity="1" />
+          <End Role="jobPosting" Type="Self.jobPosting" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="jobType">
+              <PropertyRef Name="jobTypeID" />
+            </Principal>
+            <Dependent Role="jobPosting">
+              <PropertyRef Name="jobTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="jobLocationID">
+          <End Role="jobLocation" Type="Self.jobLocation" Multiplicity="1" />
+          <End Role="jobPosting" Type="Self.jobPosting" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="jobLocation">
+              <PropertyRef Name="jobLocationID" />
+            </Principal>
+            <Dependent Role="jobPosting">
+              <PropertyRef Name="jobLocationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="HireMePostingStoreContainer">
+          <EntitySet Name="company" EntityType="Self.company" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="jobLocation" EntityType="Self.jobLocation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="jobPosting" EntityType="Self.jobPosting" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="jobType" EntityType="Self.jobType" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="job_post_company" Association="Self.job_post_company">
+            <End Role="company" EntitySet="company" />
+            <End Role="jobPosting" EntitySet="jobPosting" />
+          </AssociationSet>
+          <AssociationSet Name="job_post_job_type" Association="Self.job_post_job_type">
+            <End Role="jobType" EntitySet="jobType" />
+            <End Role="jobPosting" EntitySet="jobPosting" />
+          </AssociationSet>
+          <AssociationSet Name="jobLocationID" Association="Self.jobLocationID">
+            <End Role="jobLocation" EntitySet="jobLocation" />
+            <End Role="jobPosting" EntitySet="jobPosting" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="HireMePosting" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="company">
+          <Key>
+            <PropertyRef Name="companyID" />
+          </Key>
+          <Property Name="companyID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="companyName" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="companyDescription" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="establishmentDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="companyWebsite" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="jobPostings" Relationship="Self.job_post_company" FromRole="company" ToRole="jobPosting" />
+        </EntityType>
+        <EntityType Name="jobLocation">
+          <Key>
+            <PropertyRef Name="jobLocationID" />
+          </Key>
+          <Property Name="jobLocationID" Type="Int32" Nullable="false" />
+          <Property Name="address1" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="address2" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="city" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="state" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="country" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="zip" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="jobPostings" Relationship="Self.jobLocationID" FromRole="jobLocation" ToRole="jobPosting" />
+        </EntityType>
+        <EntityType Name="jobPosting">
+          <Key>
+            <PropertyRef Name="jobPostingID" />
+          </Key>
+          <Property Name="jobPostingID" Type="Int32" Nullable="false" />
+          <Property Name="jobTypeID" Type="Int32" Nullable="false" />
+          <Property Name="companyID" Type="Int32" Nullable="false" />
+          <Property Name="jobLocationID" Type="Int32" Nullable="false" />
+          <Property Name="userAccountID" Type="Int32" Nullable="false" />
+          <Property Name="jobCategoryID" Type="Int32" Nullable="false" />
+          <Property Name="applicantTypeID" Type="Int32" Nullable="false" />
+          <Property Name="createdDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="jobDescription" Type="String" MaxLength="500" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="jobTitle" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="numOpenings" Type="Int32" Nullable="false" />
+          <Property Name="hoursPerWeek" Type="Int32" Nullable="false" />
+          <Property Name="wageSalary" Type="Decimal" Precision="8" Scale="2" Nullable="false" />
+          <Property Name="startDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="endDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="qualifications" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="applicationInstructions" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="applicationWebsite" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="postingDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="expirationDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="enabled" Type="Boolean" Nullable="false" />
+          <Property Name="numViews" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="company" Relationship="Self.job_post_company" FromRole="jobPosting" ToRole="company" />
+          <NavigationProperty Name="jobLocation" Relationship="Self.jobLocationID" FromRole="jobPosting" ToRole="jobLocation" />
+          <NavigationProperty Name="jobType" Relationship="Self.job_post_job_type" FromRole="jobPosting" ToRole="jobType" />
+        </EntityType>
+        <EntityType Name="jobType">
+          <Key>
+            <PropertyRef Name="jobTypeID" />
+          </Key>
+          <Property Name="jobTypeID" Type="Int32" Nullable="false" />
+          <Property Name="jobTypeName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="jobPostings" Relationship="Self.job_post_job_type" FromRole="jobType" ToRole="jobPosting" />
+        </EntityType>
+        <Association Name="job_post_company">
+          <End Role="company" Type="Self.company" Multiplicity="1" />
+          <End Role="jobPosting" Type="Self.jobPosting" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="company">
+              <PropertyRef Name="companyID" />
+            </Principal>
+            <Dependent Role="jobPosting">
+              <PropertyRef Name="companyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="jobLocationID">
+          <End Role="jobLocation" Type="Self.jobLocation" Multiplicity="1" />
+          <End Role="jobPosting" Type="Self.jobPosting" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="jobLocation">
+              <PropertyRef Name="jobLocationID" />
+            </Principal>
+            <Dependent Role="jobPosting">
+              <PropertyRef Name="jobLocationID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="job_post_job_type">
+          <End Role="jobType" Type="Self.jobType" Multiplicity="1" />
+          <End Role="jobPosting" Type="Self.jobPosting" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="jobType">
+              <PropertyRef Name="jobTypeID" />
+            </Principal>
+            <Dependent Role="jobPosting">
+              <PropertyRef Name="jobTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="MireMeEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="companies" EntityType="Self.company" />
+          <EntitySet Name="jobLocations" EntityType="Self.jobLocation" />
+          <EntitySet Name="jobPostings" EntityType="Self.jobPosting" />
+          <EntitySet Name="jobTypes" EntityType="Self.jobType" />
+          <AssociationSet Name="job_post_company" Association="Self.job_post_company">
+            <End Role="company" EntitySet="companies" />
+            <End Role="jobPosting" EntitySet="jobPostings" />
+          </AssociationSet>
+          <AssociationSet Name="jobLocationID" Association="Self.jobLocationID">
+            <End Role="jobLocation" EntitySet="jobLocations" />
+            <End Role="jobPosting" EntitySet="jobPostings" />
+          </AssociationSet>
+          <AssociationSet Name="job_post_job_type" Association="Self.job_post_job_type">
+            <End Role="jobType" EntitySet="jobTypes" />
+            <End Role="jobPosting" EntitySet="jobPostings" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="HireMePostingStoreContainer" CdmEntityContainer="MireMeEntities">
+          <EntitySetMapping Name="companies">
+            <EntityTypeMapping TypeName="HireMePosting.company">
+              <MappingFragment StoreEntitySet="company">
+                <ScalarProperty Name="companyID" ColumnName="companyID" />
+                <ScalarProperty Name="companyName" ColumnName="companyName" />
+                <ScalarProperty Name="companyDescription" ColumnName="companyDescription" />
+                <ScalarProperty Name="establishmentDate" ColumnName="establishmentDate" />
+                <ScalarProperty Name="companyWebsite" ColumnName="companyWebsite" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="jobLocations">
+            <EntityTypeMapping TypeName="HireMePosting.jobLocation">
+              <MappingFragment StoreEntitySet="jobLocation">
+                <ScalarProperty Name="jobLocationID" ColumnName="jobLocationID" />
+                <ScalarProperty Name="address1" ColumnName="address1" />
+                <ScalarProperty Name="address2" ColumnName="address2" />
+                <ScalarProperty Name="city" ColumnName="city" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="country" ColumnName="country" />
+                <ScalarProperty Name="zip" ColumnName="zip" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="jobPostings">
+            <EntityTypeMapping TypeName="HireMePosting.jobPosting">
+              <MappingFragment StoreEntitySet="jobPosting">
+                <ScalarProperty Name="jobPostingID" ColumnName="jobPostingID" />
+                <ScalarProperty Name="jobTypeID" ColumnName="jobTypeID" />
+                <ScalarProperty Name="companyID" ColumnName="companyID" />
+                <ScalarProperty Name="jobLocationID" ColumnName="jobLocationID" />
+                <ScalarProperty Name="userAccountID" ColumnName="userAccountID" />
+                <ScalarProperty Name="jobCategoryID" ColumnName="jobCategoryID" />
+                <ScalarProperty Name="applicantTypeID" ColumnName="applicantTypeID" />
+                <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+                <ScalarProperty Name="jobDescription" ColumnName="jobDescription" />
+                <ScalarProperty Name="jobTitle" ColumnName="jobTitle" />
+                <ScalarProperty Name="numOpenings" ColumnName="numOpenings" />
+                <ScalarProperty Name="hoursPerWeek" ColumnName="hoursPerWeek" />
+                <ScalarProperty Name="wageSalary" ColumnName="wageSalary" />
+                <ScalarProperty Name="startDate" ColumnName="startDate" />
+                <ScalarProperty Name="endDate" ColumnName="endDate" />
+                <ScalarProperty Name="qualifications" ColumnName="qualifications" />
+                <ScalarProperty Name="applicationInstructions" ColumnName="applicationInstructions" />
+                <ScalarProperty Name="applicationWebsite" ColumnName="applicationWebsite" />
+                <ScalarProperty Name="postingDate" ColumnName="postingDate" />
+                <ScalarProperty Name="expirationDate" ColumnName="expirationDate" />
+                <ScalarProperty Name="enabled" ColumnName="enabled" />
+                <ScalarProperty Name="numViews" ColumnName="numViews" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="jobTypes">
+            <EntityTypeMapping TypeName="HireMePosting.jobType">
+              <MappingFragment StoreEntitySet="jobType">
+                <ScalarProperty Name="jobTypeID" ColumnName="jobTypeID" />
+                <ScalarProperty Name="jobTypeName" ColumnName="jobTypeName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

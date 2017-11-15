@@ -9,6 +9,7 @@ namespace HireMeFinal.Entities
 {
     public class Postings
     {
+        [Key]
         [HiddenInput(DisplayValue = false)]
         public int jobPostingID { get; set; }
         [DataType(DataType.MultilineText)]

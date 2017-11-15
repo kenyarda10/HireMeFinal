@@ -7,33 +7,23 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace HireMeFinal.Models
+namespace HireMeFinal.Entities
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class company
+    public partial class jobType
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public company()
+        public jobType()
         {
-            this.companyLogoes = new HashSet<companyLogo>();
-            this.companyIndustries = new HashSet<companyIndustry>();
             this.jobPostings = new HashSet<jobPosting>();
         }
     
-        public int companyID { get; set; }
-        public string companyName { get; set; }
-        public string companyDescription { get; set; }
-        public System.DateTime establishmentDate { get; set; }
-        public string companyWebsite { get; set; }
+        public int jobTypeID { get; set; }
+        public string jobTypeName { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<companyLogo> companyLogoes { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<companyIndustry> companyIndustries { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<jobPosting> jobPostings { get; set; }
-
     }
 }
