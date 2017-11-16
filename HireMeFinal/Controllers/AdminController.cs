@@ -22,7 +22,7 @@ namespace HireMeFinal.Controllers
 
             List<Models.jobPosting> postingList = db.jobPostings.ToList();
 
-            PostingViewModel postingVM = new PostingViewModel();
+            //PostingViewModel postingVM = new PostingViewModel();
 
             List<PostingViewModel> postingVMList = postingList.Select(x => new PostingViewModel()
             {
@@ -47,7 +47,7 @@ namespace HireMeFinal.Controllers
                 enabled = x.enabled,
                 numViews = x.numViews,
                 jobTitle = x.jobTitle,
-                jobTypes = x.jobType.jobTypeName,
+                jobType = x.jobType.jobTypeName,
                 jobDescription = x.jobDescription,
                 companyName = x.company.companyName
             }).ToList();

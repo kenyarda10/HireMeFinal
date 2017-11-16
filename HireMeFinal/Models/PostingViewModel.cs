@@ -31,7 +31,7 @@ namespace HireMeFinal.Models
         public int numViews { get; set; }
         
         public String companyName { get; set; }
-        public String jobTypes { get; set; }
-        public String jobLocations { get; set; }
+        public String jobType { get; set; }
+        public String jobLocation { get; set; }
     }
 }

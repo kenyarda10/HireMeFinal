@@ -198,33 +198,6 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PostingController.cs" />
-    <Compile Include="Entities\company.cs">
-      <DependentUpon>Posting.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\jobLocation.cs">
-      <DependentUpon>Posting.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\jobPosting.cs">
-      <DependentUpon>Posting.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\jobType.cs">
-      <DependentUpon>Posting.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\Posting.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Posting.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\Posting.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Posting.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Entities\Posting.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Posting.edmx</DependentUpon>
-    </Compile>
     <Compile Include="Entities\Postings.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -323,16 +296,6 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\ErrorStyles.css" />
     <Content Include="Content\SiteOld.css" />
-    <Content Include="Entities\Posting.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Posting.edmx</DependentUpon>
-      <LastGenOutput>Posting.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="Entities\Posting.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>Posting.edmx</DependentUpon>
-      <LastGenOutput>Posting.cs</LastGenOutput>
-    </Content>
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -355,13 +318,6 @@
     </EntityDeploy>
     <Content Include="Models\HireMeDataModel.edmx.diagram">
       <DependentUpon>HireMeDataModel.edmx</DependentUpon>
-    </Content>
-    <EntityDeploy Include="Entities\Posting.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>Posting.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Entities\Posting.edmx.diagram">
-      <DependentUpon>Posting.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
