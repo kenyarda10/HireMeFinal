@@ -11,9 +11,11 @@ namespace HireMeFinal.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class studentExperience
     {
+        [Key]
         public int userAccountID { get; set; }
         public bool currentJob { get; set; }
         public System.DateTime startDate { get; set; }

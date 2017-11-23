@@ -11,7 +11,8 @@ namespace HireMeFinal.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class jobApplicationStatu
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -19,7 +20,7 @@ namespace HireMeFinal.Models
         {
             this.jobPostActivities = new HashSet<jobPostActivity>();
         }
-    
+        [Key]
         public int jobApplicationStatusID { get; set; }
         public string statusDesc { get; set; }
     

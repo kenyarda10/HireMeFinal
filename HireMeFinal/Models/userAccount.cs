@@ -11,7 +11,8 @@ namespace HireMeFinal.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class userAccount
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -20,7 +21,7 @@ namespace HireMeFinal.Models
             this.jobPostActivities = new HashSet<jobPostActivity>();
             this.jobPostings = new HashSet<jobPosting>();
         }
-    
+        [Key]
         public int userAccountID { get; set; }
         public int userTypeID { get; set; }
         public string email { get; set; }

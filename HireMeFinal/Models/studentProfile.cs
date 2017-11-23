@@ -7,11 +7,14 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.ComponentModel.DataAnnotations.Schema;
+
 namespace HireMeFinal.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class studentProfile
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,7 +24,7 @@ namespace HireMeFinal.Models
             this.studentExperiences = new HashSet<studentExperience>();
             this.studentSkillSets = new HashSet<studentSkillSet>();
         }
-    
+        [Key, ForeignKey("userAccountID")]
         public int userAccountID { get; set; }
         public string firstName { get; set; }
         public string lastName { get; set; }

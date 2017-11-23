@@ -11,9 +11,11 @@ namespace HireMeFinal.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class userLog
     {
+        [Key]
         public int userAccountID { get; set; }
         public System.DateTime lastLoginDate { get; set; }
         public Nullable<System.DateTime> lastApplyDate { get; set; }

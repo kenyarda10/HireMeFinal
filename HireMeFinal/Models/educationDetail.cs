@@ -11,9 +11,11 @@ namespace HireMeFinal.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class educationDetail
     {
+        [Key]
         public int userAccountID { get; set; }
         public string certificateDegree { get; set; }
         public string major { get; set; }

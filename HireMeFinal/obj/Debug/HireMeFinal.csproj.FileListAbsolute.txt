@@ -75,3 +75,4 @@ C:\Users\Keith\Documents\GitHub\HireMeFinal\HireMeFinal\bin\Microsoft.Owin.Secur
 C:\Users\Keith\Documents\GitHub\HireMeFinal\HireMeFinal\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 C:\Users\Keith\Documents\GitHub\HireMeFinal\HireMeFinal\obj\Debug\HireMeFinal.dll
 C:\Users\Keith\Documents\GitHub\HireMeFinal\HireMeFinal\obj\Debug\HireMeFinal.pdb
+C:\Users\Keith\Documents\GitHub\HireMeFinal\HireMeFinal\obj\Debug\HireMeFinal.csprojResolveAssemblyReference.cache

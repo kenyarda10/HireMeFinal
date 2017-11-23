@@ -11,9 +11,11 @@ namespace HireMeFinal.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class studentSkillSet
     {
+        [Key]
         public int userAccountID { get; set; }
         public int skillSetID { get; set; }
         public int skillLevel { get; set; }
